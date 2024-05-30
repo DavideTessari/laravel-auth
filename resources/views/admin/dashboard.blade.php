@@ -18,6 +18,10 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+                    <p>Benvenuto 🤗 {{ $user->name }}.</p>
+
+                    <p>Ti sei registrato correttamente con la email: {{ $user->email }}</p>
                 </div>
             </div>
         </div>

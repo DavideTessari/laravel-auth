@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashBoardController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,8 @@ use App\Http\Controllers\Admin\DashBoardController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
 
 Route::middleware(['auth', 'verified'])
 ->name('admin.')
