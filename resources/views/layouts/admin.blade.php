@@ -59,6 +59,12 @@
                                     <i class="fa-solid fa-file-alt fa-lg fa-fw"></i> Posts
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.posts.create' ? 'bg-secondary' : '' }}" href="{{ route('admin.posts.create') }}">
+                                    <i class="fa-solid fa-file-alt fa-lg fa-fw"></i> Create post
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
