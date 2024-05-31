@@ -38,12 +38,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'slug' => 'required|string|unique:posts,slug',
-        ]);
-
+        $formData = $request->all();
+        $this->validation($formData);
         $newPost = new Post();
         $newPost->fill($data);
         $newPost->save();
@@ -84,14 +80,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $formData = $request->all();
+        $this->validation($formData);
         $post = Post::findOrFail($id);
-
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'slug' => 'required|string|unique:posts,slug,' . $post->id,
-        ]);
-
         $post->update($data);
 
         return redirect()->route('admin.posts.show', $post->id);
@@ -110,4 +101,27 @@ class PostController extends Controller
 
         return redirect()->route('admin.posts.index');
     }
+
+    private function validation($data) {
+        $validator = Validator::make(
+            $data,
+            [
+                'title' => 'required|string|min:5|max:50',
+                'slug' => 'required|string|unique:posts,slug',
+                'client_name' => 'nullable|string|max:255',
+                'summary' => 'nullable|string',
+            ],
+            [
+                'title.required' => 'Il campo titolo è obbligatorio',
+                'title.max' => 'Il campo titolo non può avere più di 50 caratteri',
+                'title.min' => 'Il campo titolo deve avere almeno 5 caratteri',
+                'slug.required' => 'Il campo slug è obbligatorio',
+                'slug.unique' => 'Il campo slug deve essere unico',
+                'client_name.max' => 'Il campo client_name non può avere più di 255 caratteri',
+            ]
+        )->validate();
+    
+        return $validator;
+    }
+    
 }
