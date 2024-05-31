@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -106,15 +107,15 @@ class PostController extends Controller
         $validator = Validator::make(
             $data,
             [
-                'title' => 'required|string|min:5|max:50',
+                'name' => 'required|string|min:5|max:50',
                 'slug' => 'required|string|unique:posts,slug',
                 'client_name' => 'nullable|string|max:255',
                 'summary' => 'nullable|string',
             ],
             [
-                'title.required' => 'Il campo titolo è obbligatorio',
-                'title.max' => 'Il campo titolo non può avere più di 50 caratteri',
-                'title.min' => 'Il campo titolo deve avere almeno 5 caratteri',
+                'name.required' => 'Il campo titolo è obbligatorio',
+                'name.max' => 'Il campo titolo non può avere più di 50 caratteri',
+                'name.min' => 'Il campo titolo deve avere almeno 5 caratteri',
                 'slug.required' => 'Il campo slug è obbligatorio',
                 'slug.unique' => 'Il campo slug deve essere unico',
                 'client_name.max' => 'Il campo client_name non può avere più di 255 caratteri',
