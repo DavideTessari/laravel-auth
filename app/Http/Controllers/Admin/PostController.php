@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -17,7 +18,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -39,10 +39,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $formData = $request->all();
-        $this->validation($formData);
+        $validatedData = $this->validation($request->all());
+        $validatedData['slug'] = Str::slug($validatedData['name'], '-');
+
         $newPost = new Post();
-        $newPost->fill($data);
+        $newPost->fill($validatedData);
         $newPost->save();
 
         return redirect()->route('admin.posts.show', $newPost->id);
@@ -81,10 +82,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $formData = $request->all();
-        $this->validation($formData);
+        $validatedData = $this->validation($request->all());
+        $validatedData['slug'] = Str::slug($validatedData['name'], '-');
+
         $post = Post::findOrFail($id);
-        $post->update($data);
+        $post->update($validatedData);
 
         return redirect()->route('admin.posts.show', $post->id);
     }
@@ -103,8 +105,9 @@ class PostController extends Controller
         return redirect()->route('admin.posts.index');
     }
 
-    private function validation($data) {
-        $validator = Validator::make(
+    private function validation($data)
+    {
+        return Validator::make(
             $data,
             [
                 'name' => 'required|string|min:5|max:50',
@@ -121,8 +124,5 @@ class PostController extends Controller
                 'client_name.max' => 'Il campo client_name non può avere più di 255 caratteri',
             ]
         )->validate();
-    
-        return $validator;
     }
-    
 }

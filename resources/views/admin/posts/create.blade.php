@@ -7,19 +7,53 @@
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}" required>
+            <input type="text" name="name" class="form-control my-3" id="name" value="{{ old('name') }}">
             @error('name')
-                <div class="text-danger">{{ $message }}</div>
+                <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
             <label for="summary" class="form-label">Summary</label>
-            <textarea name="summary" class="form-control" id="summary" rows="5">{{ old('summary') }}</textarea>
+            <textarea name="summary" class="form-control my-3" id="summary" rows="5">{{ old('summary') }}</textarea>
             @error('summary')
-                <div class="text-danger">{{ $message }}</div>
+                <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

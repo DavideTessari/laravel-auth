@@ -12,7 +12,7 @@
                 <th>Slug</th>
                 <th>Client Name</th>
                 <th>Summary</th>
-                <th>Created At</th>
+                <th>Created at</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -27,7 +27,7 @@
                 <td>{{ $post->created_at }}</td>
                 <td>
                     <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-success">View</a>
-                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning my-2">Edit</a>
                     <button class="btn btn-danger js-delete-btn" data-post-id="{{ $post->id }}" data-post-title="{{ $post->name }}">Delete</button>
                 </td>
             </tr>
