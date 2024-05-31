@@ -116,9 +116,9 @@ class PostController extends Controller
                 'summary' => 'nullable|string',
             ],
             [
-                'name.required' => 'Il campo titolo è obbligatorio',
-                'name.max' => 'Il campo titolo non può avere più di 50 caratteri',
-                'name.min' => 'Il campo titolo deve avere almeno 5 caratteri',
+                'name.required' => 'Il campo name è obbligatorio',
+                'name.max' => 'Il campo name non può avere più di 50 caratteri',
+                'name.min' => 'Il campo name deve avere almeno 5 caratteri',
                 'slug.required' => 'Il campo slug è obbligatorio',
                 'slug.unique' => 'Il campo slug deve essere unico',
                 'client_name.max' => 'Il campo client_name non può avere più di 255 caratteri',
