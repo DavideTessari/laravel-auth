@@ -111,8 +111,8 @@ class PostController extends Controller
             $data,
             [
                 'name' => 'required|string|min:5|max:50',
-                'slug' => 'required|string|unique:posts,slug',
-                'client_name' => 'nullable|string|max:255',
+                'slug' => 'required|string|max:50',
+                'client_name' => 'required|string|max:255',
                 'summary' => 'nullable|string',
             ],
             [
@@ -120,8 +120,9 @@ class PostController extends Controller
                 'name.max' => 'Il campo name non può avere più di 50 caratteri',
                 'name.min' => 'Il campo name deve avere almeno 5 caratteri',
                 'slug.required' => 'Il campo slug è obbligatorio',
-                'slug.unique' => 'Il campo slug deve essere unico',
+                //'slug.unique' => 'Il campo slug deve essere unico',
                 'client_name.max' => 'Il campo client_name non può avere più di 255 caratteri',
+                'client_name.required' => 'Il campo client_name è obbligatorio',
             ]
         )->validate();
     }

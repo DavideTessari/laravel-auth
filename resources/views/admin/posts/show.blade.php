@@ -15,6 +15,7 @@
             <p><strong>Created At:</strong> {{ $post->created_at }}</p>
         </div>
         <div class="card-footer">
+            <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning my-2">Edit</a>
             <a href="{{ route('admin.posts.index') }}" class="btn btn-secondary">Back</a>
         </div>
     </div>
