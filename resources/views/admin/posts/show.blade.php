@@ -13,6 +13,11 @@
             <p><strong>Client Name:</strong> {{ $post->client_name }}</p>
             <p><strong>Summary:</strong> {!! $post->summary !!}</p>
             <p><strong>Created At:</strong> {{ $post->created_at }}</p>
+            @if ($post->cover_image)
+                <div class="my-4">
+                    <img src="{{ asset('storage/' . $post->cover_image) }}" alt="{{ $post->name }}" class="img-fluid">
+                </div>
+            @endif
         </div>
         <div class="card-footer">
             <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning my-2">Edit</a>
